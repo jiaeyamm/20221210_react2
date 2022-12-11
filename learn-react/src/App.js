@@ -1,31 +1,68 @@
-import React from "react";
-import Hello from "./components/Hello";
+import React, { useState, useEffect } from "react";
+// import Hello from "./components/Hello";
+// import Counter from "./components/Counter";
 import "./App.css";
+import Todo from "./components/Todo";
 
 function App() {
-  /* 
-    JSX문법
-      1. 무조건 하나의 태그로 감싸서 반환해야함 => 프래그먼트를 이용하면 불필요한 태그 추가하지 않고 하나로 묶을 수 있음
-      2. 닫는 태그를 생략할 때는 셀프 클로징 태그를 사용해야함
-      3. JSX안에 자바스크립트 값을 포함시킬 때는 {} 안에 작성
-      4. 스타일 속성을 객체 형태로 전달 => 여러단어인 속성은 카멜 케이스 사용
-      5. class는 classNamd 속성으로 할당
-      6. 컴포넌트명은 대괄호로 시작
-  */
-  const name = "bb";
-  const style = {
-    color: "red",
-    fontSize: "30px",
+  const [count, setCount] = useState(0);
+  const [input, setInput] = useState("");
+  const [toggle, setToggle] = useState(false);
+
+  useEffect(() => {
+    // 렌더링이 일어날때마다 실행되는 코드
+    console.log("렌더링");
+  });
+
+  // []안의 값이 변화가 있을때만 실행된다
+  useEffect(() => {
+    console.log("input : ", input);
+  }, [input]);
+  useEffect(() => {
+    console.log("count : ", count);
+  }, [count]);
+
+  const handleCount = () => {
+    setCount(count + 1);
   };
+
+  const handleInput = (e) => {
+    setInput(e.target.value);
+  };
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
+
+  // const name = "bb";
+  // const style = {
+  //   color: "red",
+  //   fontSize: "30px",
+  // };
   return (
     <>
-      <input />
-      <Hello />
-      <Hello></Hello>
-      <Hello></Hello>
-      <p className="content" style={style}>
+      {/* <Hello text="bb" active={false} />
+      <Hello color="red" active /> */}
+      {/* 조건부 렌더링 */}
+      {/* {true && <Hello />} */}
+      {/* <p className="content" style={style}>
         이름 : {name}
-      </p>
+      </p> */}
+
+      {/* <div>
+        <h2>{count}</h2>
+        <button onClick={handleCount}>+1</button>
+        <div>
+          <input type="text" onChange={handleInput} value={input} />
+          <p>{input}</p>
+        </div>
+        <button onClick={handleToggle}>toggle hello component</button>
+        {toggle && <Hello />}
+
+        <TodoInput />
+      </div> */}
+
+      <Todo />
     </>
   );
 }
