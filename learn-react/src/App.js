@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import Hello from "./components/Hello";
 // import Counter from "./components/Counter";
 import "./App.css";
+import "./index.scss";
 import Todo from "./components/Todo";
 
 function App() {
